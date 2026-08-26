@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Youssef & Zeinab Engagement Invitation">
+  <title>Youssef & Zeinab | Engagement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="petal petal-1"></div><div class="petal petal-2"></div>
+  <main>
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">WE ARE GETTING ENGAGED</p>
+        <h1>Youssef <span>&amp;</span> Zeinab</h1>
+        <p class="hero-date">16 • 09 • 2026</p>
+        <a class="btn btn-light" href="#details">Discover the Invitation</a>
+      </div>
+    </section>
+
+    <section class="intro section">
+      <p class="eyebrow">A BEAUTIFUL BEGINNING</p>
+      <h2>Two hearts, one beautiful story.</h2>
+      <p class="intro-text">
+        With joyful hearts, we invite you to celebrate the beginning of our new chapter together.
+        Your presence will make our special day even more beautiful.
+      </p>
+      <div class="ornament">♡</div>
+    </section>
+
+    <section class="countdown-section section">
+      <p class="eyebrow">SAVE THE DATE</p>
+      <h2>Counting down to our special day</h2>
+      <div id="countdown" class="countdown">
+        <div><strong id="days">00</strong><span>Days</span></div>
+        <div><strong id="hours">00</strong><span>Hours</span></div>
+        <div><strong id="minutes">00</strong><span>Minutes</span></div>
+        <div><strong id="seconds">00</strong><span>Seconds</span></div>
+      </div>
+      <p class="time-note">Event time: <span id="eventTimeText">Please add the event time in script.js</span></p>
+    </section>
+
+    <section class="story section">
+      <div class="story-photo photo-placeholder">
+        <img src="images/youssef-childhood.jpg" alt="Youssef as a child"
+             onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+        <span>Add Youssef's childhood photo</span>
+      </div>
+      <div class="story-center">
+        <p class="eyebrow">OUR STORY</p>
+        <h2>From little dreams<br>to a shared future.</h2>
+        <p>Some stories begin long before we know where they will lead. Today, we're excited to celebrate the next beautiful chapter.</p>
+      </div>
+      <div class="story-photo photo-placeholder">
+        <img src="images/zeinab-childhood.jpg" alt="Zeinab as a child"
+             onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+        <span>Add Zeinab's childhood photo</span>
+      </div>
+    </section>
+
+    <section id="details" class="details section">
+      <p class="eyebrow">THE CELEBRATION</p>
+      <h2>Join us for our engagement</h2>
+      <div class="details-grid">
+        <div class="detail-card"><span class="icon">♡</span><h3>Date</h3><p>Wednesday<br><b>16 September 2026</b></p></div>
+        <div class="detail-card"><span class="icon">⌖</span><h3>Venue</h3><p><b>Panorama October</b><br>(Diamond)</p></div>
+        <div class="detail-card"><span class="icon">✦</span><h3>Time</h3><p id="timeCard">Add event time<br>in script.js</p></div>
+      </div>
+      <a class="btn" href="https://maps.app.goo.gl/tcP6sx71dPLGsLkv6?g_st=ipc" target="_blank" rel="noopener">Open Location</a>
+    </section>
+
+    <section class="gallery section">
+      <p class="eyebrow">OUR MEMORIES</p>
+      <h2>A little glimpse of us</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="images/photo-1.jpg" alt="Youssef and Zeinab" onerror="this.parentElement.classList.add('empty')"><span>Add photo 1</span></div>
+        <div class="gallery-item tall"><img src="images/photo-2.jpg" alt="Youssef and Zeinab" onerror="this.parentElement.classList.add('empty')"><span>Add photo 2</span></div>
+        <div class="gallery-item"><img src="images/photo-3.jpg" alt="Youssef and Zeinab" onerror="this.parentElement.classList.add('empty')"><span>Add photo 3</span></div>
+      </div>
+    </section>
+
+    <section class="rsvp section" id="rsvp">
+      <div class="rsvp-box">
+        <p class="eyebrow">WE WOULD LOVE TO SEE YOU</p>
+        <h2>Will you join us?</h2>
+        <p>Please confirm your attendance below.</p>
+        <form id="rsvpForm">
+          <input id="guestName" type="text" placeholder="Your name" required>
+          <select id="attendance" required>
+            <option value="">Will you attend?</option>
+            <option value="yes">Yes, I'll be there ♡</option>
+            <option value="no">Sorry, I can't make it</option>
+          </select>
+          <input id="guests" type="number" min="1" max="10" value="1" placeholder="Number of guests">
+          <button class="btn" type="submit">Confirm Attendance</button>
+        </form>
+        <p id="rsvpMessage" class="rsvp-message"></p>
+      </div>
+    </section>
+
+    <footer>
+      <p>With love,</p>
+      <h2>Youssef &amp; Zeinab</h2>
+      <small>16 • 09 • 2026</small>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
