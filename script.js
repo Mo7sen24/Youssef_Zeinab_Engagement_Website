@@ -4,7 +4,7 @@
 // ===============================
 
 // ضع هنا رابط Google Apps Script
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPpA0OjXNjD36nkrgzQnJgnLF5qJ2_yNzE68FLPE_1jYHkiLOKrkyKA7DwxB7yU72I/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyf9FoCJNman4C4nVtc8R3tG1CZgc2vaDcIRp7ULy6xN2lyqHFdJ9eNBQqbNWJZZm2E/exec";
 
 
 document.getElementById("rsvpForm").addEventListener("submit", async function (e) {
