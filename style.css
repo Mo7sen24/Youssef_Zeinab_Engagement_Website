@@ -61,7 +61,7 @@ footer small{letter-spacing:4px;font-size:.65rem;color:#e9cbd4}
  .countdown div{width:105px;height:105px}.countdown strong{font-size:2.4rem}
 }
 @media(max-width:420px){.hero h1{font-size:3.7rem}.hero-date{letter-spacing:4px}.countdown{gap:8px}.countdown div{width:82px;height:90px}.countdown strong{font-size:2rem}.countdown span{font-size:.55rem}}
-```css
+
 /* ===============================
    WISHES
 ================================ */
