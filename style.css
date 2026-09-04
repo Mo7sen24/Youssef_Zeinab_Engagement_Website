@@ -61,3 +61,59 @@ footer small{letter-spacing:4px;font-size:.65rem;color:#e9cbd4}
  .countdown div{width:105px;height:105px}.countdown strong{font-size:2.4rem}
 }
 @media(max-width:420px){.hero h1{font-size:3.7rem}.hero-date{letter-spacing:4px}.countdown{gap:8px}.countdown div{width:82px;height:90px}.countdown strong{font-size:2rem}.countdown span{font-size:.55rem}}
+```css
+/* ===============================
+   WISHES
+================================ */
+
+.wishes {
+  background: var(--cream);
+}
+
+.wishes-box {
+  max-width: 650px;
+  margin: auto;
+}
+
+.wishes-box > p:not(.eyebrow) {
+  max-width: 550px;
+  margin: 0 auto;
+  color: #765e66;
+}
+
+.wishes form {
+  display: grid;
+  gap: 12px;
+  margin: 30px auto 10px;
+  max-width: 460px;
+}
+
+.wishes input,
+.wishes textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  padding: 15px 17px;
+  border-radius: 8px;
+  background: white;
+  color: var(--dark);
+  font: 400 .8rem Montserrat;
+  outline: none;
+  resize: vertical;
+}
+
+.wishes textarea {
+  min-height: 130px;
+}
+
+.wishes input:focus,
+.wishes textarea:focus {
+  border-color: var(--pink);
+}
+
+.wish-response {
+  min-height: 25px;
+  color: #a65d75;
+  font-size: .8rem;
+  margin-top: 10px;
+}
+```
