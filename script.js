@@ -1,86 +1,95 @@
 // ===============================
-// GOOGLE SHEETS RSVP
+// GOOGLE SHEETS
 // ===============================
 
-// ضع هنا رابط Google Apps Script
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyf9FoCJNman4C4nVtc8R3tG1CZgc2vaDcIRp7ULy6xN2lyqHFdJ9eNBQqbNWJZZm2E/exec";
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbyf9FoCJNman4C4nVtc8R3tG1CZgc2vaDcIRp7ULy6xN2lyqHFdJ9eNBQqbNWJZZm2E/exec";
 
 
-document.getElementById("rsvpForm").addEventListener("submit", async function (e) {
+// ===============================
+// RSVP
+// ===============================
 
-  e.preventDefault();
+const rsvpForm = document.getElementById("rsvpForm");
 
-  const name = document.getElementById("guestName").value.trim();
-  const attendance = document.getElementById("attendance").value;
-  const guests = document.getElementById("guests").value;
-  const message = document.getElementById("rsvpMessage");
+if (rsvpForm) {
 
-  if (!name || !attendance) {
-    message.textContent = "Please complete all required fields.";
-    return;
-  }
+  rsvpForm.addEventListener("submit", async function (e) {
 
-  if (GOOGLE_SCRIPT_URL === "PUT_YOUR_GOOGLE_SCRIPT_URL_HERE") {
-    message.textContent = "Please connect Google Sheets first.";
-    return;
-  }
+    e.preventDefault();
 
-  const data = {
-    name: name,
-    attendance: attendance,
-    guests: guests
-  };
+    const name = document.getElementById("guestName").value.trim();
+    const attendance = document.getElementById("attendance").value;
+    const guests = document.getElementById("guests").value;
+    const message = document.getElementById("rsvpMessage");
 
-  try {
+    if (!name || !attendance) {
+      message.textContent = "Please complete all required fields.";
+      return;
+    }
 
     message.textContent = "Sending your RSVP...";
 
-    await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify(data)
-    });
+    const data = {
+      name: name,
+      attendance: attendance,
+      guests: guests
+    };
 
-    message.textContent =
-      attendance === "yes"
-        ? `Thank you, ${name}! We can't wait to see you ♡`
-        : `Thank you for letting us know, ${name}. ♡`;
+    try {
 
-    document.getElementById("rsvpForm").reset();
-    document.getElementById("guests").value = 1;
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(data)
+      });
 
-  } catch (error) {
+      message.textContent =
+        attendance === "yes"
+          ? `Thank you, ${name}! We can't wait to see you ♡`
+          : `Thank you for letting us know, ${name}. ♡`;
 
-    console.error(error);
+      rsvpForm.reset();
 
-    message.textContent =
-      "Something went wrong. Please try again.";
+      document.getElementById("guests").value = 1;
 
-  }
+    } catch (error) {
 
-});
+      console.error(error);
+
+      message.textContent =
+        "Something went wrong. Please try again.";
+
+    }
+
+  });
+
+}
+
 
 // ===============================
-// GOOGLE SHEETS WISHES
+// WISHES
 // ===============================
 
-document.getElementById("wishForm").addEventListener("submit", async function (e) {
+const wishForm = document.getElementById("wishForm");
 
-  e.preventDefault();
+if (wishForm) {
 
-  const name = document.getElementById("wishName").value.trim();
-  const wish = document.getElementById("wishMessage").value.trim();
-  const response = document.getElementById("wishResponse");
+  wishForm.addEventListener("submit", async function (e) {
 
-  if (!name || !wish) {
-    response.textContent = "Please write your name and wish.";
-    return;
-  }
+    e.preventDefault();
 
-  try {
+    const name = document.getElementById("wishName").value.trim();
+    const wish = document.getElementById("wishMessage").value.trim();
+    const response = document.getElementById("wishResponse");
+
+    if (!name || !wish) {
+      response.textContent = "Please write your name and wish.";
+      return;
+    }
 
     response.textContent = "Sending your wish...";
 
@@ -90,28 +99,31 @@ document.getElementById("wishForm").addEventListener("submit", async function (e
       message: wish
     };
 
-    await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify(data)
-    });
+    try {
 
-    response.textContent =
-      `Thank you, ${name}! Your wish means a lot to us ♡`;
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(data)
+      });
 
-    document.getElementById("wishForm").reset();
+      response.textContent =
+        `Thank you, ${name}! Your wish means a lot to us ♡`;
 
-  } catch (error) {
+      wishForm.reset();
 
-    console.error(error);
+    } catch (error) {
 
-    response.textContent =
-      "Something went wrong. Please try again.";
+      console.error(error);
 
-  }
+      response.textContent =
+        "Something went wrong. Please try again.";
 
-});
-```
+    }
+
+  });
+
+}
