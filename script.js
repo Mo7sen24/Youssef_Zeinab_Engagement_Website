@@ -62,7 +62,7 @@ document.getElementById("rsvpForm").addEventListener("submit", async function (e
   }
 
 });
-```javascript
+
 // ===============================
 // GOOGLE SHEETS WISHES
 // ===============================
