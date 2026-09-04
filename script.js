@@ -62,3 +62,56 @@ document.getElementById("rsvpForm").addEventListener("submit", async function (e
   }
 
 });
+```javascript
+// ===============================
+// GOOGLE SHEETS WISHES
+// ===============================
+
+document.getElementById("wishForm").addEventListener("submit", async function (e) {
+
+  e.preventDefault();
+
+  const name = document.getElementById("wishName").value.trim();
+  const wish = document.getElementById("wishMessage").value.trim();
+  const response = document.getElementById("wishResponse");
+
+  if (!name || !wish) {
+    response.textContent = "Please write your name and wish.";
+    return;
+  }
+
+  try {
+
+    response.textContent = "Sending your wish...";
+
+    const data = {
+      type: "wish",
+      name: name,
+      message: wish
+    };
+
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify(data)
+    });
+
+    response.textContent =
+      `Thank you, ${name}! Your wish means a lot to us ♡`;
+
+    document.getElementById("wishForm").reset();
+
+  } catch (error) {
+
+    console.error(error);
+
+    response.textContent =
+      "Something went wrong. Please try again.";
+
+  }
+
+});
+```
