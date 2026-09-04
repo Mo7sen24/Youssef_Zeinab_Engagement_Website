@@ -106,6 +106,40 @@
         <p id="rsvpMessage" class="rsvp-message"></p>
       </div>
     </section>
+```html
+<section class="wishes section" id="wishes">
+  <div class="wishes-box">
+    <p class="eyebrow">A LITTLE NOTE FROM YOU</p>
+    <h2>Leave a wish for us ♡</h2>
+    <p>
+      Send Youssef & Zeinab a sweet message to remember on their special day.
+    </p>
+
+    <form id="wishForm">
+      <input
+        id="wishName"
+        type="text"
+        placeholder="Your name"
+        required
+      >
+
+      <textarea
+        id="wishMessage"
+        placeholder="Write your congratulations..."
+        rows="5"
+        maxlength="500"
+        required
+      ></textarea>
+
+      <button class="btn" type="submit">
+        Send Your Wish ♡
+      </button>
+    </form>
+
+    <p id="wishResponse" class="wish-response"></p>
+  </div>
+</section>
+```
 
     <footer>
       <p>With love,</p>
