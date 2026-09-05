@@ -34,12 +34,14 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 // ===============================
-// GOOGLE SHEETS & LOCAL STORAGE RSVP
+// GOOGLE SHEETS RSVP
 // ===============================
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyf9FoCJNman4C4nVtc8R3tG1CZgc2vaDcIRp7ULy6xN2lyqHFdJ9eNBQqbNWJZZm2E/exec";
 
 document.getElementById("rsvpForm").addEventListener("submit", async function (e) {
+  // منع إعادة تحميل الصفحة أو الصعود لأعلى
   e.preventDefault();
+  e.stopPropagation();
 
   const name = document.getElementById("guestName").value.trim();
   const attendance = document.getElementById("attendance").value;
@@ -48,38 +50,48 @@ document.getElementById("rsvpForm").addEventListener("submit", async function (e
 
   if (!name || !attendance) {
     message.textContent = "Please complete all required fields.";
-    return;
+    return false;
   }
 
-  // Backup to Local Storage
-  localStorage.setItem("engagementRSVP", JSON.stringify({
-    name, attendance, guests, submittedAt: new Date().toISOString()
-  }));
+  message.textContent = "Sending your RSVP...";
 
-  const data = { name, attendance, guests };
+  const payload = {
+    name: name,
+    attendance: attendance,
+    guests: guests
+  };
 
   try {
-    message.textContent = "Sending your RSVP...";
+    // إرسال البيانات كـ FormData لضمان وصولها لسيرفر Google Apps Script بدون مشاكل CORS
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("attendance", attendance);
+    formData.append("guests", guests);
 
     await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
       mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify(data)
+      body: formData
     });
 
+    // إظهار رسالة النجاح
     message.textContent =
       attendance === "yes"
         ? `Thank you, ${name}! We can't wait to see you ♡`
         : `Thank you for letting us know, ${name}. ♡`;
 
+    // حفظ نسخة احتياطية على متصفح الزائر
+    localStorage.setItem("engagementRSVP", JSON.stringify({
+      name, attendance, guests, submittedAt: new Date().toISOString()
+    }));
+
     this.reset();
     document.getElementById("guests").value = 1;
 
   } catch (error) {
-    console.error(error);
+    console.error("RSVP Error:", error);
     message.textContent = "Something went wrong. Please try again.";
   }
+
+  return false;
 });
