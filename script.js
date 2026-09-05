@@ -1,9 +1,5 @@
-
-
 // ===============================
 // EDIT YOUR EVENT TIME HERE
-// Example: "20:00" means 8:00 PM.
-// The countdown uses Cairo local time.
 // ===============================
 const EVENT_TIME = "20:00";
 const EVENT_TIME_LABEL = "8:00 PM";
@@ -37,40 +33,12 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// RSVP demo: saves the guest response in this browser.
-// For real online RSVP collection, connect the form to a backend,
-// Google Forms, Formspree, Supabase, Firebase, etc.
-document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const name = document.getElementById("guestName").value.trim();
-  const attendance = document.getElementById("attendance").value;
-  const guests = document.getElementById("guests").value;
-  const message = document.getElementById("rsvpMessage");
-
-  if (!name || !attendance) return;
-
-  localStorage.setItem("engagementRSVP", JSON.stringify({
-    name, attendance, guests, submittedAt: new Date().toISOString()
-  }));
-
-  message.textContent = attendance === "yes"
-    ? `Thank you, ${name}! We can't wait to see you ♡`
-    : `Thank you for letting us know, ${name}. ♡`;
-
-  this.reset();
-  document.getElementById("guests").value = 1;
-});
 // ===============================
-// GOOGLE SHEETS RSVP
+// GOOGLE SHEETS & LOCAL STORAGE RSVP
 // ===============================
-
-// ضع هنا رابط Google Apps Script
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyf9FoCJNman4C4nVtc8R3tG1CZgc2vaDcIRp7ULy6xN2lyqHFdJ9eNBQqbNWJZZm2E/exec";
 
-
 document.getElementById("rsvpForm").addEventListener("submit", async function (e) {
-
   e.preventDefault();
 
   const name = document.getElementById("guestName").value.trim();
@@ -83,19 +51,14 @@ document.getElementById("rsvpForm").addEventListener("submit", async function (e
     return;
   }
 
-  if (GOOGLE_SCRIPT_URL === "PUT_YOUR_GOOGLE_SCRIPT_URL_HERE") {
-    message.textContent = "Please connect Google Sheets first.";
-    return;
-  }
+  // Backup to Local Storage
+  localStorage.setItem("engagementRSVP", JSON.stringify({
+    name, attendance, guests, submittedAt: new Date().toISOString()
+  }));
 
-  const data = {
-    name: name,
-    attendance: attendance,
-    guests: guests
-  };
+  const data = { name, attendance, guests };
 
   try {
-
     message.textContent = "Sending your RSVP...";
 
     await fetch(GOOGLE_SCRIPT_URL, {
@@ -109,19 +72,14 @@ document.getElementById("rsvpForm").addEventListener("submit", async function (e
 
     message.textContent =
       attendance === "yes"
-        ? Thank you, ${name}! We can't wait to see you ♡
-        : Thank you for letting us know, ${name}. ♡;
+        ? `Thank you, ${name}! We can't wait to see you ♡`
+        : `Thank you for letting us know, ${name}. ♡`;
 
-    document.getElementById("rsvpForm").reset();
+    this.reset();
     document.getElementById("guests").value = 1;
 
   } catch (error) {
-
     console.error(error);
-
-    message.textContent =
-      "Something went wrong. Please try again.";
-
+    message.textContent = "Something went wrong. Please try again.";
   }
-
 });
