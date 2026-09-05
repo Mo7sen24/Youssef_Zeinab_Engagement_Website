@@ -95,3 +95,43 @@ document.getElementById("rsvpForm").addEventListener("submit", async function (e
 
   return false;
 });
+// ===============================
+// WISHES FORM SUBMISSION
+// ===============================
+document.getElementById("wishForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const name = document.getElementById("wishName").value.trim();
+  const messageText = document.getElementById("wishMessage").value.trim();
+  const statusMessage = document.getElementById("wishStatusMessage");
+
+  if (!name || !messageText) {
+    statusMessage.textContent = "Please fill in all fields.";
+    return false;
+  }
+
+  statusMessage.textContent = "Sending your wish...";
+
+  try {
+    const formData = new FormData();
+    formData.append("type", "wish"); // نحدد النوع إنه wish ليتوجه لتاب Wishes في الشيت
+    formData.append("name", name);
+    formData.append("message", messageText);
+
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: formData
+    });
+
+    statusMessage.textContent = `Thank you, ${name}! Your warm wish has been sent ♡`;
+    this.reset();
+
+  } catch (error) {
+    console.error("Wish Error:", error);
+    statusMessage.textContent = "Something went wrong. Please try again.";
+  }
+
+  return false;
+});
