@@ -36,7 +36,7 @@ setInterval(updateCountdown, 1000);
 // ===============================
 // GOOGLE SHEETS RSVP
 // ===============================
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyf9FoCJNman4C4nVtc8R3tG1CZgc2vaDcIRp7ULy6xN2lyqHFdJ9eNBQqbNWJZZm2E/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxaRG-o8eJKHEUmhcVTN2IRfCUw1kc3T4aw6YlhsJ59oA3OxcHETkqT3lZmw0ikJvTL/exec";
 
 document.getElementById("rsvpForm").addEventListener("submit", async function (e) {
   // منع إعادة تحميل الصفحة أو الصعود لأعلى
