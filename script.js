@@ -5,7 +5,7 @@ const EVENT_TIME = "20:00";
 const EVENT_TIME_LABEL = "8:00 PM";
 
 // Event date: 16 September 2026
-const eventDate = new Date(`2026-09-16T${EVENT_TIME}:00`);
+const eventDate = new Date(`2026-12-16T${EVENT_TIME}:00`);
 
 document.getElementById("eventTimeText").textContent = EVENT_TIME_LABEL;
 document.getElementById("timeCard").innerHTML = EVENT_TIME_LABEL;
